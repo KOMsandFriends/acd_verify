@@ -7,9 +7,16 @@ if [ $# -ne 1 ]
 fi
 
 FILE=$1
+
+if [ ! -f $FILE ]; then
+    echo "File "$FILE" not found!"
+	exit
+fi
+
 FILENAME=$(echo $FILE | rev | cut -d'/' -f1 | rev)
 #TMP="/tmp/verifyACD-"$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 6 | head -n 1)
 LOG="/var/log/acd_verify.log"
+ERRORLOG="/var/log/acd_verify_error.log"
 
 echo $(date) >> $LOG
 echo "local file:" >> $LOG
@@ -25,6 +32,7 @@ if [ "$RESULT" ]; then
 else
 	echo "FILENAME CHECK: [FAILED]" >> $LOG
 	echo "REMOTE: filename not found. Leaving."
+	echo -e $(date)"\tFilename not found:\t"$FILE >> $ERRORLOG
 	echo "---" >> $LOG
 	exit
 fi
@@ -42,6 +50,7 @@ if [ "$RESULT" ]; then
 else
     echo "MD5 CHECK: [FAILED]" >> $LOG
     echo "REMOTE: md5 sum not found. Leaving."
+	echo -e $(date)"\tmd5 sum not found:\t"$FILE >> $ERRORLOG
 	echo "---" >> $LOG
     exit
 fi

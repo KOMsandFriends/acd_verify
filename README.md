@@ -11,10 +11,13 @@ cd acd_verify
 sudo chmod +x acd_verify.sh
 ```
 
-/var/log/acd_verify.log has to be writeable for user:
+/var/log/acd_verify.log and /var/log/acd_verify_error.log have to be writeable for user:
 ```
-sudo touch /var/log/acd_verify.log
-sudo chown <YOUR USERNAME> /var/log/acd_verify.log
+# sudo touch /var/log/acd_verify.log
+# sudo chown <YOUR USERNAME> /var/log/acd_verify.log
+
+# sudo touch /var/log/acd_verify_error.log
+# sudo chown <YOUR USERNAME> /var/log/acd_verify_error.log
 ```
 
 # usage
