@@ -1,7 +1,7 @@
 # acd_verify
 uses acd_cli and md5sum to verify remote files on acd automatically.
 
-early beta phase. use at own risk.
+early beta. use at own risk.
 
 # installation
 requirements: acd_cli https://github.com/yadayada/acd_cli
@@ -21,4 +21,5 @@ sudo chmod +x acd_verify.sh
 ```
 
 # usage
+It may be necessary to execute `acd_cli sync` before acd_verify.
 `./acd_verify.sh LOCAL_FILE`
